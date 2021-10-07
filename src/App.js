@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from 'react'
+import Router from './Router'
+import Navbars from './Components/Navbars'
+import Container from 'react-bootstrap/Container'
+import { useRecoilValue } from 'recoil'
+import './App.css'
+import { theme } from './Store'
 function App() {
+  const currenTheme = useRecoilValue(theme)
+  const themes = currenTheme === 'dark' ? 'bg-dark text-light' : 'bg-light text-dark'
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <Container fluid className={`pd-0 ${themes}`}>
+        <Navbars />
+        <Router />
+      </Container>
+    </React.Suspense>
   );
 }
 
