@@ -5,7 +5,7 @@ export const dataUser = selector({
     get: async () => {
         let user = null
         try {
-            user = fetch('https://jsonplaceholder.typicode.com/users/1')
+            user = await fetch('https://jsonplaceholder.typicode.com/users/1')
                 .then(resp => resp.json())
                 .then(resp => resp)
         } catch (error) {
@@ -21,3 +21,4 @@ export const theme = atom({
     key: 'switch-theme',
     default: 'dark'
 })
+// http://www.omdbapi.com?apikey=2681e8d8&i=tt3896198&s=superman
