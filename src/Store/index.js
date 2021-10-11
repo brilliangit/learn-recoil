@@ -22,3 +22,25 @@ export const theme = atom({
     default: 'dark'
 })
 // http://www.omdbapi.com?apikey=2681e8d8&i=tt3896198&s=superman
+
+export const filter = atom({
+    key:'filter-film',
+    default: 'batman'
+})
+
+export const listFilm = selector({
+    key:'list-film',
+    get: async({get}) => {
+        const filterParam = get(filter)
+        let film = [];
+        
+        try {
+            film = await fetch(`http://www.omdbapi.com?apikey=2681e8d8&i=tt3896198&s=${filterParam}`)
+            .then(res => res.json())
+            .then(resp => resp)
+        } catch (error) {
+            
+        }
+        return film
+    }
+})
