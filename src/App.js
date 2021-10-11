@@ -3,6 +3,7 @@ import Router from './Router'
 import Navbars from './Components/Navbars'
 import Container from 'react-bootstrap/Container'
 import { useRecoilValue } from 'recoil'
+import {BrowserRouter} from 'react-router-dom'
 import './App.css'
 import { theme } from './Store'
 function App() {
@@ -11,8 +12,10 @@ function App() {
   return (
     <React.Suspense fallback={<div>Loading...</div>}>
       <Container fluid className={`pd-0 ${themes}`}>
-        <Navbars />
-        <Router />
+        <BrowserRouter>
+          <Navbars />
+          <Router />
+        </BrowserRouter>
       </Container>
     </React.Suspense>
   );
